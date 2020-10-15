@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.ReportMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.Report" >
+    <result column="report_id" property="reportId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="bad_user_id" property="badUserId" jdbcType="INTEGER" />
+    <result column="bad_user_name" property="badUserName" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="dotime" property="dotime" jdbcType="TIMESTAMP" />
+    <result column="from" property="from" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="source_url" property="sourceUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.Report" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <insert id="insert" parameterType="test.domain.Report" >
+    insert into report_list_v (report_id, user_id, user_name, 
+      bad_user_id, bad_user_name, reason, 
+      crtime, dotime, from, 
+      status, source_url, content
+      )
+    values (#{reportId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{badUserId,jdbcType=INTEGER}, #{badUserName,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, 
+      #{crtime,jdbcType=TIMESTAMP}, #{dotime,jdbcType=TIMESTAMP}, #{from,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT}, #{sourceUrl,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.Report" >
+    insert into report_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="reportId != null" >
+        report_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="badUserId != null" >
+        bad_user_id,
+      </if>
+      <if test="badUserName != null" >
+        bad_user_name,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="dotime != null" >
+        dotime,
+      </if>
+      <if test="from != null" >
+        from,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sourceUrl != null" >
+        source_url,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="reportId != null" >
+        #{reportId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="badUserId != null" >
+        #{badUserId,jdbcType=INTEGER},
+      </if>
+      <if test="badUserName != null" >
+        #{badUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dotime != null" >
+        #{dotime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="from != null" >
+        #{from,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="sourceUrl != null" >
+        #{sourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

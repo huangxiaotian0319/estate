@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.DynamicListMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.DynamicList" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="danymic_id" property="danymicId" jdbcType="INTEGER" />
+    <result column="from" property="from" jdbcType="TINYINT" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="is_del" property="isDel" jdbcType="TINYINT" />
+    <result column="client_type" property="clientType" jdbcType="TINYINT" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="review_count" property="reviewCount" jdbcType="INTEGER" />
+    <result column="retran_count" property="retranCount" jdbcType="INTEGER" />
+    <result column="praise_count" property="praiseCount" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.DynamicList" extends="BaseResultMap" >
+    <result column="data" property="data" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    data
+  </sql>
+  <insert id="insert" parameterType="test.domain.DynamicList" >
+    insert into dynamic_list_v (user_id, user_name, danymic_id, 
+      from, crtime, is_del, 
+      client_type, ip, review_count, 
+      retran_count, praise_count, data
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{danymicId,jdbcType=INTEGER}, 
+      #{from,jdbcType=TINYINT}, #{crtime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=TINYINT}, 
+      #{clientType,jdbcType=TINYINT}, #{ip,jdbcType=VARCHAR}, #{reviewCount,jdbcType=INTEGER}, 
+      #{retranCount,jdbcType=INTEGER}, #{praiseCount,jdbcType=INTEGER}, #{data,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.DynamicList" >
+    insert into dynamic_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="danymicId != null" >
+        danymic_id,
+      </if>
+      <if test="from != null" >
+        from,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="clientType != null" >
+        client_type,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="reviewCount != null" >
+        review_count,
+      </if>
+      <if test="retranCount != null" >
+        retran_count,
+      </if>
+      <if test="praiseCount != null" >
+        praise_count,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="danymicId != null" >
+        #{danymicId,jdbcType=INTEGER},
+      </if>
+      <if test="from != null" >
+        #{from,jdbcType=TINYINT},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="clientType != null" >
+        #{clientType,jdbcType=TINYINT},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewCount != null" >
+        #{reviewCount,jdbcType=INTEGER},
+      </if>
+      <if test="retranCount != null" >
+        #{retranCount,jdbcType=INTEGER},
+      </if>
+      <if test="praiseCount != null" >
+        #{praiseCount,jdbcType=INTEGER},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

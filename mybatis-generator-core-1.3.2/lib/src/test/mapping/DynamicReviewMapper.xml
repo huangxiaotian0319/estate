@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.DynamicReviewMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.DynamicReview" >
+    <result column="danymic_id" property="danymicId" jdbcType="INTEGER" />
+    <result column="publish_user_id" property="publishUserId" jdbcType="INTEGER" />
+    <result column="publish_user_name" property="publishUserName" jdbcType="VARCHAR" />
+    <result column="review_id" property="reviewId" jdbcType="INTEGER" />
+    <result column="review_user_id" property="reviewUserId" jdbcType="INTEGER" />
+    <result column="review_user_name" property="reviewUserName" jdbcType="VARCHAR" />
+    <result column="to_review_id" property="toReviewId" jdbcType="INTEGER" />
+    <result column="to_user_id" property="toUserId" jdbcType="INTEGER" />
+    <result column="to_user_name" property="toUserName" jdbcType="VARCHAR" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+    <result column="client_type" property="clientType" jdbcType="TINYINT" />
+    <result column="display_order" property="displayOrder" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.DynamicReviewWithBLOBs" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="data" property="data" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    content, data
+  </sql>
+  <insert id="insert" parameterType="test.domain.DynamicReviewWithBLOBs" >
+    insert into dynamic_review_list_v (danymic_id, publish_user_id, publish_user_name, 
+      review_id, review_user_id, review_user_name, 
+      to_review_id, to_user_id, to_user_name, 
+      ctime, is_del, client_type, 
+      display_order, content, data
+      )
+    values (#{danymicId,jdbcType=INTEGER}, #{publishUserId,jdbcType=INTEGER}, #{publishUserName,jdbcType=VARCHAR}, 
+      #{reviewId,jdbcType=INTEGER}, #{reviewUserId,jdbcType=INTEGER}, #{reviewUserName,jdbcType=VARCHAR}, 
+      #{toReviewId,jdbcType=INTEGER}, #{toUserId,jdbcType=INTEGER}, #{toUserName,jdbcType=VARCHAR}, 
+      #{ctime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=BIT}, #{clientType,jdbcType=TINYINT}, 
+      #{displayOrder,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}, #{data,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.DynamicReviewWithBLOBs" >
+    insert into dynamic_review_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="danymicId != null" >
+        danymic_id,
+      </if>
+      <if test="publishUserId != null" >
+        publish_user_id,
+      </if>
+      <if test="publishUserName != null" >
+        publish_user_name,
+      </if>
+      <if test="reviewId != null" >
+        review_id,
+      </if>
+      <if test="reviewUserId != null" >
+        review_user_id,
+      </if>
+      <if test="reviewUserName != null" >
+        review_user_name,
+      </if>
+      <if test="toReviewId != null" >
+        to_review_id,
+      </if>
+      <if test="toUserId != null" >
+        to_user_id,
+      </if>
+      <if test="toUserName != null" >
+        to_user_name,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="clientType != null" >
+        client_type,
+      </if>
+      <if test="displayOrder != null" >
+        display_order,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="danymicId != null" >
+        #{danymicId,jdbcType=INTEGER},
+      </if>
+      <if test="publishUserId != null" >
+        #{publishUserId,jdbcType=INTEGER},
+      </if>
+      <if test="publishUserName != null" >
+        #{publishUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewId != null" >
+        #{reviewId,jdbcType=INTEGER},
+      </if>
+      <if test="reviewUserId != null" >
+        #{reviewUserId,jdbcType=INTEGER},
+      </if>
+      <if test="reviewUserName != null" >
+        #{reviewUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="toReviewId != null" >
+        #{toReviewId,jdbcType=INTEGER},
+      </if>
+      <if test="toUserId != null" >
+        #{toUserId,jdbcType=INTEGER},
+      </if>
+      <if test="toUserName != null" >
+        #{toUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=BIT},
+      </if>
+      <if test="clientType != null" >
+        #{clientType,jdbcType=TINYINT},
+      </if>
+      <if test="displayOrder != null" >
+        #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.PersonMsgMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.PersonMsg" >
+    <result column="pm_id" property="pmId" jdbcType="BIGINT" />
+    <result column="send_user_id" property="sendUserId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="pm_type" property="pmType" jdbcType="BIT" />
+    <result column="recieve_user_id" property="recieveUserId" jdbcType="INTEGER" />
+    <result column="recieve_user_name" property="recieveUserName" jdbcType="VARCHAR" />
+    <result column="recieve_time" property="recieveTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.PersonMsg" extends="BaseResultMap" >
+    <result column="pm_content" property="pmContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    pm_content
+  </sql>
+  <insert id="insert" parameterType="test.domain.PersonMsg" >
+    insert into person_message_list_v (pm_id, send_user_id, user_name, 
+      crtime, pm_type, recieve_user_id, 
+      recieve_user_name, recieve_time, status, 
+      pm_content)
+    values (#{pmId,jdbcType=BIGINT}, #{sendUserId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{crtime,jdbcType=TIMESTAMP}, #{pmType,jdbcType=BIT}, #{recieveUserId,jdbcType=INTEGER}, 
+      #{recieveUserName,jdbcType=VARCHAR}, #{recieveTime,jdbcType=TIMESTAMP}, #{status,jdbcType=BIT}, 
+      #{pmContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.PersonMsg" >
+    insert into person_message_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pmId != null" >
+        pm_id,
+      </if>
+      <if test="sendUserId != null" >
+        send_user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="pmType != null" >
+        pm_type,
+      </if>
+      <if test="recieveUserId != null" >
+        recieve_user_id,
+      </if>
+      <if test="recieveUserName != null" >
+        recieve_user_name,
+      </if>
+      <if test="recieveTime != null" >
+        recieve_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="pmContent != null" >
+        pm_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pmId != null" >
+        #{pmId,jdbcType=BIGINT},
+      </if>
+      <if test="sendUserId != null" >
+        #{sendUserId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pmType != null" >
+        #{pmType,jdbcType=BIT},
+      </if>
+      <if test="recieveUserId != null" >
+        #{recieveUserId,jdbcType=INTEGER},
+      </if>
+      <if test="recieveUserName != null" >
+        #{recieveUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="recieveTime != null" >
+        #{recieveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="pmContent != null" >
+        #{pmContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

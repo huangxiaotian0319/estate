@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.PersonInfoMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.PersonInfo" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="ufr_id" property="ufrId" jdbcType="INTEGER" />
+    <result column="field_id" property="fieldId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="BIT" />
+    <result column="field_key" property="fieldKey" jdbcType="VARCHAR" />
+    <result column="field_name" property="fieldName" jdbcType="VARCHAR" />
+    <result column="field_type" property="fieldType" jdbcType="INTEGER" />
+    <result column="visiable" property="visiable" jdbcType="BIT" />
+    <result column="editable" property="editable" jdbcType="BIT" />
+    <result column="required" property="required" jdbcType="BIT" />
+    <result column="privacy" property="privacy" jdbcType="BIT" />
+    <result column="display_order" property="displayOrder" jdbcType="INTEGER" />
+    <result column="form_type" property="formType" jdbcType="VARCHAR" />
+    <result column="validation" property="validation" jdbcType="VARCHAR" />
+    <result column="tips" property="tips" jdbcType="VARCHAR" />
+    <result column="is_system" property="isSystem" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.PersonInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="field_data" property="fieldData" jdbcType="LONGVARCHAR" />
+    <result column="form_default_value" property="formDefaultValue" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    field_data, form_default_value
+  </sql>
+  <insert id="insert" parameterType="test.domain.PersonInfoWithBLOBs" >
+    insert into user_person_info_v (user_id, user_name, ufr_id, 
+      field_id, type, field_key, 
+      field_name, field_type, visiable, 
+      editable, required, privacy, display_order, 
+      form_type, validation, tips, 
+      is_system, field_data, form_default_value
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{ufrId,jdbcType=INTEGER}, 
+      #{fieldId,jdbcType=INTEGER}, #{type,jdbcType=BIT}, #{fieldKey,jdbcType=VARCHAR}, 
+      #{fieldName,jdbcType=VARCHAR}, #{fieldType,jdbcType=INTEGER}, #{visiable,jdbcType=BIT}, 
+      #{editable,jdbcType=BIT}, #{required,jdbcType=BIT}, #{privacy,jdbcType=BIT}, #{displayOrder,jdbcType=INTEGER}, 
+      #{formType,jdbcType=VARCHAR}, #{validation,jdbcType=VARCHAR}, #{tips,jdbcType=VARCHAR}, 
+      #{isSystem,jdbcType=INTEGER}, #{fieldData,jdbcType=LONGVARCHAR}, #{formDefaultValue,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.PersonInfoWithBLOBs" >
+    insert into user_person_info_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="ufrId != null" >
+        ufr_id,
+      </if>
+      <if test="fieldId != null" >
+        field_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="fieldKey != null" >
+        field_key,
+      </if>
+      <if test="fieldName != null" >
+        field_name,
+      </if>
+      <if test="fieldType != null" >
+        field_type,
+      </if>
+      <if test="visiable != null" >
+        visiable,
+      </if>
+      <if test="editable != null" >
+        editable,
+      </if>
+      <if test="required != null" >
+        required,
+      </if>
+      <if test="privacy != null" >
+        privacy,
+      </if>
+      <if test="displayOrder != null" >
+        display_order,
+      </if>
+      <if test="formType != null" >
+        form_type,
+      </if>
+      <if test="validation != null" >
+        validation,
+      </if>
+      <if test="tips != null" >
+        tips,
+      </if>
+      <if test="isSystem != null" >
+        is_system,
+      </if>
+      <if test="fieldData != null" >
+        field_data,
+      </if>
+      <if test="formDefaultValue != null" >
+        form_default_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="ufrId != null" >
+        #{ufrId,jdbcType=INTEGER},
+      </if>
+      <if test="fieldId != null" >
+        #{fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="fieldKey != null" >
+        #{fieldKey,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldName != null" >
+        #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldType != null" >
+        #{fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="visiable != null" >
+        #{visiable,jdbcType=BIT},
+      </if>
+      <if test="editable != null" >
+        #{editable,jdbcType=BIT},
+      </if>
+      <if test="required != null" >
+        #{required,jdbcType=BIT},
+      </if>
+      <if test="privacy != null" >
+        #{privacy,jdbcType=BIT},
+      </if>
+      <if test="displayOrder != null" >
+        #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="formType != null" >
+        #{formType,jdbcType=VARCHAR},
+      </if>
+      <if test="validation != null" >
+        #{validation,jdbcType=VARCHAR},
+      </if>
+      <if test="tips != null" >
+        #{tips,jdbcType=VARCHAR},
+      </if>
+      <if test="isSystem != null" >
+        #{isSystem,jdbcType=INTEGER},
+      </if>
+      <if test="fieldData != null" >
+        #{fieldData,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="formDefaultValue != null" >
+        #{formDefaultValue,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

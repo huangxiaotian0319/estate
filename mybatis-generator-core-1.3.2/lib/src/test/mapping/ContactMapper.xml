@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.ContactMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.Contact" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="contact_id" property="contactId" jdbcType="INTEGER" />
+    <result column="f_user_id" property="fUserId" jdbcType="INTEGER" />
+    <result column="f_user_name" property="fUserName" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="test.domain.Contact" >
+    insert into user_contact_list_v (user_id, user_name, group_name, 
+      contact_id, f_user_id, f_user_name
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}, 
+      #{contactId,jdbcType=INTEGER}, #{fUserId,jdbcType=INTEGER}, #{fUserName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.Contact" >
+    insert into user_contact_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="groupName != null" >
+        group_name,
+      </if>
+      <if test="contactId != null" >
+        contact_id,
+      </if>
+      <if test="fUserId != null" >
+        f_user_id,
+      </if>
+      <if test="fUserName != null" >
+        f_user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactId != null" >
+        #{contactId,jdbcType=INTEGER},
+      </if>
+      <if test="fUserId != null" >
+        #{fUserId,jdbcType=INTEGER},
+      </if>
+      <if test="fUserName != null" >
+        #{fUserName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

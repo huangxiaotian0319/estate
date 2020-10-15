@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.GroupMsgMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.GroupMsg" >
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="gm_id" property="gmId" jdbcType="BIGINT" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="send_user_id" property="sendUserId" jdbcType="INTEGER" />
+    <result column="send_user_name" property="sendUserName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.GroupMsg" extends="BaseResultMap" >
+    <result column="gm_content" property="gmContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    gm_content
+  </sql>
+  <insert id="insert" parameterType="test.domain.GroupMsg" >
+    insert into group_message_list_v (group_name, gm_id, crtime, 
+      send_user_id, send_user_name, gm_content
+      )
+    values (#{groupName,jdbcType=VARCHAR}, #{gmId,jdbcType=BIGINT}, #{crtime,jdbcType=TIMESTAMP}, 
+      #{sendUserId,jdbcType=INTEGER}, #{sendUserName,jdbcType=VARCHAR}, #{gmContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.GroupMsg" >
+    insert into group_message_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupName != null" >
+        group_name,
+      </if>
+      <if test="gmId != null" >
+        gm_id,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="sendUserId != null" >
+        send_user_id,
+      </if>
+      <if test="sendUserName != null" >
+        send_user_name,
+      </if>
+      <if test="gmContent != null" >
+        gm_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmId != null" >
+        #{gmId,jdbcType=BIGINT},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendUserId != null" >
+        #{sendUserId,jdbcType=INTEGER},
+      </if>
+      <if test="sendUserName != null" >
+        #{sendUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmContent != null" >
+        #{gmContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

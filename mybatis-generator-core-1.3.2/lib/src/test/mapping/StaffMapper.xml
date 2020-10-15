@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.StaffMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.Staff" >
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="company_domain" property="companyDomain" jdbcType="VARCHAR" />
+    <result column="orgstaff_id" property="orgstaffId" jdbcType="INTEGER" />
+    <result column="staff_name" property="staffName" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="BIT" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="staffcrtime" property="staffcrtime" jdbcType="TIMESTAMP" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="father_id" property="fatherId" jdbcType="INTEGER" />
+    <result column="display_order" property="displayOrder" jdbcType="INTEGER" />
+    <result column="orgcrtime" property="orgcrtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.Staff" extends="BaseResultMap" >
+    <result column="brief" property="brief" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    brief
+  </sql>
+  <insert id="insert" parameterType="test.domain.Staff" >
+    insert into company_org_staff_list_v (company_id, company_domain, orgstaff_id, 
+      staff_name, gender, birthday, 
+      contact, photo, position, 
+      staffcrtime, org_id, org_name, 
+      father_id, display_order, orgcrtime, 
+      brief)
+    values (#{companyId,jdbcType=INTEGER}, #{companyDomain,jdbcType=VARCHAR}, #{orgstaffId,jdbcType=INTEGER}, 
+      #{staffName,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, #{birthday,jdbcType=VARCHAR}, 
+      #{contact,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{staffcrtime,jdbcType=TIMESTAMP}, #{orgId,jdbcType=INTEGER}, #{orgName,jdbcType=VARCHAR}, 
+      #{fatherId,jdbcType=INTEGER}, #{displayOrder,jdbcType=INTEGER}, #{orgcrtime,jdbcType=TIMESTAMP}, 
+      #{brief,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.Staff" >
+    insert into company_org_staff_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyDomain != null" >
+        company_domain,
+      </if>
+      <if test="orgstaffId != null" >
+        orgstaff_id,
+      </if>
+      <if test="staffName != null" >
+        staff_name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="staffcrtime != null" >
+        staffcrtime,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="fatherId != null" >
+        father_id,
+      </if>
+      <if test="displayOrder != null" >
+        display_order,
+      </if>
+      <if test="orgcrtime != null" >
+        orgcrtime,
+      </if>
+      <if test="brief != null" >
+        brief,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyDomain != null" >
+        #{companyDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="orgstaffId != null" >
+        #{orgstaffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffName != null" >
+        #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=BIT},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="staffcrtime != null" >
+        #{staffcrtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherId != null" >
+        #{fatherId,jdbcType=INTEGER},
+      </if>
+      <if test="displayOrder != null" >
+        #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="orgcrtime != null" >
+        #{orgcrtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="brief != null" >
+        #{brief,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

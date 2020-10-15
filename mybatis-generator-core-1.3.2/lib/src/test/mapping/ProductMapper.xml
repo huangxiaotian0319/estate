@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.Product" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="display_order" property="displayOrder" jdbcType="INTEGER" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="intro" property="intro" jdbcType="VARCHAR" />
+    <result column="mark" property="mark" jdbcType="BIT" />
+    <result column="reserve" property="reserve" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="grouptype_id" property="grouptypeId" jdbcType="INTEGER" />
+    <result column="grouptype_name" property="grouptypeName" jdbcType="VARCHAR" />
+    <result column="father_id" property="fatherId" jdbcType="INTEGER" />
+    <result column="order" property="order" jdbcType="INTEGER" />
+    <result column="producttagcrtime" property="producttagcrtime" jdbcType="TIMESTAMP" />
+    <result column="is_norm" property="isNorm" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.ProductWithBLOBs" extends="BaseResultMap" >
+    <result column="detail" property="detail" jdbcType="LONGVARCHAR" />
+    <result column="logistic_terms" property="logisticTerms" jdbcType="LONGVARCHAR" />
+    <result column="productcrtime" property="productcrtime" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    detail, logistic_terms, productcrtime
+  </sql>
+  <insert id="insert" parameterType="test.domain.ProductWithBLOBs" >
+    insert into user_product_list_v (user_id, user_name, product_id, 
+      product_name, display_order, photo, 
+      intro, mark, reserve, price, 
+      end_time, crtime, grouptype_id, 
+      grouptype_name, father_id, order, 
+      producttagcrtime, is_norm, detail, 
+      logistic_terms, productcrtime)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
+      #{productName,jdbcType=VARCHAR}, #{displayOrder,jdbcType=INTEGER}, #{photo,jdbcType=VARCHAR}, 
+      #{intro,jdbcType=VARCHAR}, #{mark,jdbcType=BIT}, #{reserve,jdbcType=INTEGER}, #{price,jdbcType=REAL}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{crtime,jdbcType=TIMESTAMP}, #{grouptypeId,jdbcType=INTEGER}, 
+      #{grouptypeName,jdbcType=VARCHAR}, #{fatherId,jdbcType=INTEGER}, #{order,jdbcType=INTEGER}, 
+      #{producttagcrtime,jdbcType=TIMESTAMP}, #{isNorm,jdbcType=BIT}, #{detail,jdbcType=LONGVARCHAR}, 
+      #{logisticTerms,jdbcType=LONGVARCHAR}, #{productcrtime,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.ProductWithBLOBs" >
+    insert into user_product_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="displayOrder != null" >
+        display_order,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+      <if test="mark != null" >
+        mark,
+      </if>
+      <if test="reserve != null" >
+        reserve,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="grouptypeId != null" >
+        grouptype_id,
+      </if>
+      <if test="grouptypeName != null" >
+        grouptype_name,
+      </if>
+      <if test="fatherId != null" >
+        father_id,
+      </if>
+      <if test="order != null" >
+        order,
+      </if>
+      <if test="producttagcrtime != null" >
+        producttagcrtime,
+      </if>
+      <if test="isNorm != null" >
+        is_norm,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+      <if test="logisticTerms != null" >
+        logistic_terms,
+      </if>
+      <if test="productcrtime != null" >
+        productcrtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="displayOrder != null" >
+        #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null" >
+        #{mark,jdbcType=BIT},
+      </if>
+      <if test="reserve != null" >
+        #{reserve,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="grouptypeId != null" >
+        #{grouptypeId,jdbcType=INTEGER},
+      </if>
+      <if test="grouptypeName != null" >
+        #{grouptypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherId != null" >
+        #{fatherId,jdbcType=INTEGER},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=INTEGER},
+      </if>
+      <if test="producttagcrtime != null" >
+        #{producttagcrtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isNorm != null" >
+        #{isNorm,jdbcType=BIT},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="logisticTerms != null" >
+        #{logisticTerms,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="productcrtime != null" >
+        #{productcrtime,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

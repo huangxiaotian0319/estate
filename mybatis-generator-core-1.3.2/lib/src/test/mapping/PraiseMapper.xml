@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.PraiseMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.Praise" >
+    <result column="ad_id" property="adId" jdbcType="BIGINT" />
+    <result column="ad_type" property="adType" jdbcType="TINYINT" />
+    <result column="push_id" property="pushId" jdbcType="INTEGER" />
+    <result column="push_title" property="pushTitle" jdbcType="VARCHAR" />
+    <result column="praise_count" property="praiseCount" jdbcType="INTEGER" />
+    <result column="prasie_id" property="prasieId" jdbcType="INTEGER" />
+    <result column="push_user_id" property="pushUserId" jdbcType="INTEGER" />
+    <result column="prasie_user_id" property="prasieUserId" jdbcType="INTEGER" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="order" property="order" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="test.domain.Praise" >
+    insert into advertise_praise_list_v (ad_id, ad_type, push_id, 
+      push_title, praise_count, prasie_id, 
+      push_user_id, prasie_user_id, crtime, 
+      order)
+    values (#{adId,jdbcType=BIGINT}, #{adType,jdbcType=TINYINT}, #{pushId,jdbcType=INTEGER}, 
+      #{pushTitle,jdbcType=VARCHAR}, #{praiseCount,jdbcType=INTEGER}, #{prasieId,jdbcType=INTEGER}, 
+      #{pushUserId,jdbcType=INTEGER}, #{prasieUserId,jdbcType=INTEGER}, #{crtime,jdbcType=TIMESTAMP}, 
+      #{order,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.Praise" >
+    insert into advertise_praise_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adId != null" >
+        ad_id,
+      </if>
+      <if test="adType != null" >
+        ad_type,
+      </if>
+      <if test="pushId != null" >
+        push_id,
+      </if>
+      <if test="pushTitle != null" >
+        push_title,
+      </if>
+      <if test="praiseCount != null" >
+        praise_count,
+      </if>
+      <if test="prasieId != null" >
+        prasie_id,
+      </if>
+      <if test="pushUserId != null" >
+        push_user_id,
+      </if>
+      <if test="prasieUserId != null" >
+        prasie_user_id,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="order != null" >
+        order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adId != null" >
+        #{adId,jdbcType=BIGINT},
+      </if>
+      <if test="adType != null" >
+        #{adType,jdbcType=TINYINT},
+      </if>
+      <if test="pushId != null" >
+        #{pushId,jdbcType=INTEGER},
+      </if>
+      <if test="pushTitle != null" >
+        #{pushTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="praiseCount != null" >
+        #{praiseCount,jdbcType=INTEGER},
+      </if>
+      <if test="prasieId != null" >
+        #{prasieId,jdbcType=INTEGER},
+      </if>
+      <if test="pushUserId != null" >
+        #{pushUserId,jdbcType=INTEGER},
+      </if>
+      <if test="prasieUserId != null" >
+        #{prasieUserId,jdbcType=INTEGER},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

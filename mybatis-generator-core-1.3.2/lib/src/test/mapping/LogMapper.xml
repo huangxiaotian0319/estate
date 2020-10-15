@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.LogMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.Log" >
+    <result column="syslog_id" property="syslogId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="app_name" property="appName" jdbcType="CHAR" />
+    <result column="group" property="group" jdbcType="CHAR" />
+    <result column="action" property="action" jdbcType="CHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="isAdmin" property="isadmin" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.LogWithBLOBs" extends="BaseResultMap" >
+    <result column="data" property="data" jdbcType="LONGVARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    data, keyword
+  </sql>
+  <insert id="insert" parameterType="test.domain.LogWithBLOBs" >
+    insert into log_list_v (syslog_id, user_id, user_name, 
+      app_name, group, action, ip, 
+      url, ctime, isAdmin, 
+      data, keyword)
+    values (#{syslogId,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{appName,jdbcType=CHAR}, #{group,jdbcType=CHAR}, #{action,jdbcType=CHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, #{isadmin,jdbcType=TINYINT}, 
+      #{data,jdbcType=LONGVARCHAR}, #{keyword,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.LogWithBLOBs" >
+    insert into log_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="syslogId != null" >
+        syslog_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="appName != null" >
+        app_name,
+      </if>
+      <if test="group != null" >
+        group,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="isadmin != null" >
+        isAdmin,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="syslogId != null" >
+        #{syslogId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null" >
+        #{appName,jdbcType=CHAR},
+      </if>
+      <if test="group != null" >
+        #{group,jdbcType=CHAR},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=CHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isadmin != null" >
+        #{isadmin,jdbcType=TINYINT},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

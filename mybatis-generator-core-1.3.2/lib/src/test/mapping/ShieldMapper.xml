@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.ShieldMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.Shield" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="shield_id" property="shieldId" jdbcType="INTEGER" />
+    <result column="blacked_object_id" property="blackedObjectId" jdbcType="INTEGER" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="object_type" property="objectType" jdbcType="TINYINT" />
+  </resultMap>
+  <insert id="insert" parameterType="test.domain.Shield" >
+    insert into user_shield_list_v (user_id, user_name, shield_id, 
+      blacked_object_id, crtime, object_type
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{shieldId,jdbcType=INTEGER}, 
+      #{blackedObjectId,jdbcType=INTEGER}, #{crtime,jdbcType=TIMESTAMP}, #{objectType,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.Shield" >
+    insert into user_shield_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="shieldId != null" >
+        shield_id,
+      </if>
+      <if test="blackedObjectId != null" >
+        blacked_object_id,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="objectType != null" >
+        object_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="shieldId != null" >
+        #{shieldId,jdbcType=INTEGER},
+      </if>
+      <if test="blackedObjectId != null" >
+        #{blackedObjectId,jdbcType=INTEGER},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="objectType != null" >
+        #{objectType,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

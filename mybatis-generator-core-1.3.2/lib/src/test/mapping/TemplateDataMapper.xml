@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.TemplateDataMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.TemplateData" >
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="company_domain" property="companyDomain" jdbcType="VARCHAR" />
+    <result column="template_using_time" property="templateUsingTime" jdbcType="TIMESTAMP" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="SMALLINT" />
+    <result column="template_name" property="templateName" jdbcType="VARCHAR" />
+    <result column="template_alias" property="templateAlias" jdbcType="VARCHAR" />
+    <result column="template_title" property="templateTitle" jdbcType="VARCHAR" />
+    <result column="template_url" property="templateUrl" jdbcType="VARCHAR" />
+    <result column="template_type" property="templateType" jdbcType="TINYINT" />
+    <result column="iscache" property="iscache" jdbcType="BIT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.TemplateDataWithBLOBs" extends="BaseResultMap" >
+    <result column="template_data" property="templateData" jdbcType="LONGVARCHAR" />
+    <result column="setting" property="setting" jdbcType="LONGVARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    template_data, setting, content
+  </sql>
+  <insert id="insert" parameterType="test.domain.TemplateDataWithBLOBs" >
+    insert into company_template_data_v (company_id, company_domain, template_using_time, 
+      crtime, type, template_name, 
+      template_alias, template_title, template_url, 
+      template_type, iscache, remark, 
+      template_data, setting, content
+      )
+    values (#{companyId,jdbcType=INTEGER}, #{companyDomain,jdbcType=VARCHAR}, #{templateUsingTime,jdbcType=TIMESTAMP}, 
+      #{crtime,jdbcType=TIMESTAMP}, #{type,jdbcType=SMALLINT}, #{templateName,jdbcType=VARCHAR}, 
+      #{templateAlias,jdbcType=VARCHAR}, #{templateTitle,jdbcType=VARCHAR}, #{templateUrl,jdbcType=VARCHAR}, 
+      #{templateType,jdbcType=TINYINT}, #{iscache,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}, 
+      #{templateData,jdbcType=LONGVARCHAR}, #{setting,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.TemplateDataWithBLOBs" >
+    insert into company_template_data_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyDomain != null" >
+        company_domain,
+      </if>
+      <if test="templateUsingTime != null" >
+        template_using_time,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="templateName != null" >
+        template_name,
+      </if>
+      <if test="templateAlias != null" >
+        template_alias,
+      </if>
+      <if test="templateTitle != null" >
+        template_title,
+      </if>
+      <if test="templateUrl != null" >
+        template_url,
+      </if>
+      <if test="templateType != null" >
+        template_type,
+      </if>
+      <if test="iscache != null" >
+        iscache,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="templateData != null" >
+        template_data,
+      </if>
+      <if test="setting != null" >
+        setting,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyDomain != null" >
+        #{companyDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="templateUsingTime != null" >
+        #{templateUsingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="templateName != null" >
+        #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="templateAlias != null" >
+        #{templateAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="templateTitle != null" >
+        #{templateTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="templateUrl != null" >
+        #{templateUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="templateType != null" >
+        #{templateType,jdbcType=TINYINT},
+      </if>
+      <if test="iscache != null" >
+        #{iscache,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="templateData != null" >
+        #{templateData,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="setting != null" >
+        #{setting,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

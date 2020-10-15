@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.DynamicRetranMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.DynamicRetran" >
+    <result column="danymic_id" property="danymicId" jdbcType="INTEGER" />
+    <result column="retran_id" property="retranId" jdbcType="INTEGER" />
+    <result column="dynamic_user_id" property="dynamicUserId" jdbcType="INTEGER" />
+    <result column="dynamic_user_name" property="dynamicUserName" jdbcType="VARCHAR" />
+    <result column="retran_user_id" property="retranUserId" jdbcType="INTEGER" />
+    <result column="retran_user_name" property="retranUserName" jdbcType="VARCHAR" />
+    <result column="retran_time" property="retranTime" jdbcType="TIMESTAMP" />
+    <result column="retran_order" property="retranOrder" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="test.domain.DynamicRetran" >
+    insert into dynamic_retran_list_v (danymic_id, retran_id, dynamic_user_id, 
+      dynamic_user_name, retran_user_id, retran_user_name, 
+      retran_time, retran_order, is_del
+      )
+    values (#{danymicId,jdbcType=INTEGER}, #{retranId,jdbcType=INTEGER}, #{dynamicUserId,jdbcType=INTEGER}, 
+      #{dynamicUserName,jdbcType=VARCHAR}, #{retranUserId,jdbcType=INTEGER}, #{retranUserName,jdbcType=VARCHAR}, 
+      #{retranTime,jdbcType=TIMESTAMP}, #{retranOrder,jdbcType=INTEGER}, #{isDel,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.DynamicRetran" >
+    insert into dynamic_retran_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="danymicId != null" >
+        danymic_id,
+      </if>
+      <if test="retranId != null" >
+        retran_id,
+      </if>
+      <if test="dynamicUserId != null" >
+        dynamic_user_id,
+      </if>
+      <if test="dynamicUserName != null" >
+        dynamic_user_name,
+      </if>
+      <if test="retranUserId != null" >
+        retran_user_id,
+      </if>
+      <if test="retranUserName != null" >
+        retran_user_name,
+      </if>
+      <if test="retranTime != null" >
+        retran_time,
+      </if>
+      <if test="retranOrder != null" >
+        retran_order,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="danymicId != null" >
+        #{danymicId,jdbcType=INTEGER},
+      </if>
+      <if test="retranId != null" >
+        #{retranId,jdbcType=INTEGER},
+      </if>
+      <if test="dynamicUserId != null" >
+        #{dynamicUserId,jdbcType=INTEGER},
+      </if>
+      <if test="dynamicUserName != null" >
+        #{dynamicUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="retranUserId != null" >
+        #{retranUserId,jdbcType=INTEGER},
+      </if>
+      <if test="retranUserName != null" >
+        #{retranUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="retranTime != null" >
+        #{retranTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="retranOrder != null" >
+        #{retranOrder,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

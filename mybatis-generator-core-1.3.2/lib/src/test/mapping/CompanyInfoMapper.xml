@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.CompanyInfoMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.CompanyInfo" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="company_domain" property="companyDomain" jdbcType="VARCHAR" />
+    <result column="info_id" property="infoId" jdbcType="INTEGER" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.CompanyInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="company_brief" property="companyBrief" jdbcType="LONGVARCHAR" />
+    <result column="tradeterms" property="tradeterms" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    company_brief, tradeterms
+  </sql>
+  <insert id="insert" parameterType="test.domain.CompanyInfoWithBLOBs" >
+    insert into company_info_v (user_id, user_name, company_id, 
+      company_domain, info_id, company_name, 
+      company_brief, tradeterms)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
+      #{companyDomain,jdbcType=VARCHAR}, #{infoId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, 
+      #{companyBrief,jdbcType=LONGVARCHAR}, #{tradeterms,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.CompanyInfoWithBLOBs" >
+    insert into company_info_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyDomain != null" >
+        company_domain,
+      </if>
+      <if test="infoId != null" >
+        info_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyBrief != null" >
+        company_brief,
+      </if>
+      <if test="tradeterms != null" >
+        tradeterms,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyDomain != null" >
+        #{companyDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="infoId != null" >
+        #{infoId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyBrief != null" >
+        #{companyBrief,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tradeterms != null" >
+        #{tradeterms,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

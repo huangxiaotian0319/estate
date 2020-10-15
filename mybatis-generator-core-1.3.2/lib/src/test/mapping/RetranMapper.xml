@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.RetranMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.Retran" >
+    <result column="ad_id" property="adId" jdbcType="BIGINT" />
+    <result column="push_id" property="pushId" jdbcType="INTEGER" />
+    <result column="push_title" property="pushTitle" jdbcType="VARCHAR" />
+    <result column="retran_count" property="retranCount" jdbcType="INTEGER" />
+    <result column="retran_id" property="retranId" jdbcType="INTEGER" />
+    <result column="push_user_id" property="pushUserId" jdbcType="INTEGER" />
+    <result column="retran_user_id" property="retranUserId" jdbcType="INTEGER" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="order" property="order" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="test.domain.Retran" >
+    insert into advertise_retran_list_v (ad_id, push_id, push_title, 
+      retran_count, retran_id, push_user_id, 
+      retran_user_id, crtime, order, 
+      is_del)
+    values (#{adId,jdbcType=BIGINT}, #{pushId,jdbcType=INTEGER}, #{pushTitle,jdbcType=VARCHAR}, 
+      #{retranCount,jdbcType=INTEGER}, #{retranId,jdbcType=INTEGER}, #{pushUserId,jdbcType=INTEGER}, 
+      #{retranUserId,jdbcType=INTEGER}, #{crtime,jdbcType=TIMESTAMP}, #{order,jdbcType=INTEGER}, 
+      #{isDel,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.Retran" >
+    insert into advertise_retran_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adId != null" >
+        ad_id,
+      </if>
+      <if test="pushId != null" >
+        push_id,
+      </if>
+      <if test="pushTitle != null" >
+        push_title,
+      </if>
+      <if test="retranCount != null" >
+        retran_count,
+      </if>
+      <if test="retranId != null" >
+        retran_id,
+      </if>
+      <if test="pushUserId != null" >
+        push_user_id,
+      </if>
+      <if test="retranUserId != null" >
+        retran_user_id,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="order != null" >
+        order,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adId != null" >
+        #{adId,jdbcType=BIGINT},
+      </if>
+      <if test="pushId != null" >
+        #{pushId,jdbcType=INTEGER},
+      </if>
+      <if test="pushTitle != null" >
+        #{pushTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="retranCount != null" >
+        #{retranCount,jdbcType=INTEGER},
+      </if>
+      <if test="retranId != null" >
+        #{retranId,jdbcType=INTEGER},
+      </if>
+      <if test="pushUserId != null" >
+        #{pushUserId,jdbcType=INTEGER},
+      </if>
+      <if test="retranUserId != null" >
+        #{retranUserId,jdbcType=INTEGER},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

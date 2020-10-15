@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.LeaveMsgMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.LeaveMsg" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="leavemesboard_id" property="leavemesboardId" jdbcType="INTEGER" />
+    <result column="leavemessage_id" property="leavemessageId" jdbcType="INTEGER" />
+    <result column="leave_user_id" property="leaveUserId" jdbcType="INTEGER" />
+    <result column="leave_user_name" property="leaveUserName" jdbcType="VARCHAR" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.LeaveMsg" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <insert id="insert" parameterType="test.domain.LeaveMsg" >
+    insert into leavemessage_list_v (user_id, user_name, leavemesboard_id, 
+      leavemessage_id, leave_user_id, leave_user_name, 
+      crtime, is_del, content
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{leavemesboardId,jdbcType=INTEGER}, 
+      #{leavemessageId,jdbcType=INTEGER}, #{leaveUserId,jdbcType=INTEGER}, #{leaveUserName,jdbcType=VARCHAR}, 
+      #{crtime,jdbcType=TIMESTAMP}, #{isDel,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.LeaveMsg" >
+    insert into leavemessage_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="leavemesboardId != null" >
+        leavemesboard_id,
+      </if>
+      <if test="leavemessageId != null" >
+        leavemessage_id,
+      </if>
+      <if test="leaveUserId != null" >
+        leave_user_id,
+      </if>
+      <if test="leaveUserName != null" >
+        leave_user_name,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="leavemesboardId != null" >
+        #{leavemesboardId,jdbcType=INTEGER},
+      </if>
+      <if test="leavemessageId != null" >
+        #{leavemessageId,jdbcType=INTEGER},
+      </if>
+      <if test="leaveUserId != null" >
+        #{leaveUserId,jdbcType=INTEGER},
+      </if>
+      <if test="leaveUserName != null" >
+        #{leaveUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=BIT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

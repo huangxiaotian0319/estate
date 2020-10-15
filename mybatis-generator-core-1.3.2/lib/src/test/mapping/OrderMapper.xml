@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.Order" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="to_user_id" property="toUserId" jdbcType="INTEGER" />
+    <result column="order_code" property="orderCode" jdbcType="VARCHAR" />
+    <result column="crtime" property="crtime" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="orderdetail_id" property="orderdetailId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="amount" property="amount" jdbcType="REAL" />
+  </resultMap>
+  <insert id="insert" parameterType="test.domain.Order" >
+    insert into user_order_list_v (user_id, user_name, order_id, 
+      product_id, to_user_id, order_code, 
+      crtime, status, orderdetail_id, 
+      product_name, price, amount
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{orderId,jdbcType=INTEGER}, 
+      #{productId,jdbcType=INTEGER}, #{toUserId,jdbcType=INTEGER}, #{orderCode,jdbcType=VARCHAR}, 
+      #{crtime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{orderdetailId,jdbcType=INTEGER}, 
+      #{productName,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{amount,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.Order" >
+    insert into user_order_list_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="toUserId != null" >
+        to_user_id,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="orderdetailId != null" >
+        orderdetail_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="toUserId != null" >
+        #{toUserId,jdbcType=INTEGER},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderdetailId != null" >
+        #{orderdetailId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

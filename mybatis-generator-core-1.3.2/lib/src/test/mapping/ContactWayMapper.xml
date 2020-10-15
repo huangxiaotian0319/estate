@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.IDao.ContactWayMapper" >
+  <resultMap id="BaseResultMap" type="test.domain.ContactWay" >
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="company_domain" property="companyDomain" jdbcType="VARCHAR" />
+    <result column="contactway_id" property="contactwayId" jdbcType="INTEGER" />
+    <result column="contactor" property="contactor" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+    <result column="company_link" property="companyLink" jdbcType="VARCHAR" />
+    <result column="crtime" property="crtime" jdbcType="TIMESTAMP" />
+    <result column="mtime" property="mtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="test.domain.ContactWay" extends="BaseResultMap" >
+    <result column="map_location" property="mapLocation" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    map_location
+  </sql>
+  <insert id="insert" parameterType="test.domain.ContactWay" >
+    insert into company_contactway_info_v (user_id, user_name, company_id, 
+      company_domain, contactway_id, contactor, 
+      phone, fax, address, 
+      postcode, company_link, crtime, 
+      mtime, map_location)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
+      #{companyDomain,jdbcType=VARCHAR}, #{contactwayId,jdbcType=INTEGER}, #{contactor,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{postcode,jdbcType=VARCHAR}, #{companyLink,jdbcType=VARCHAR}, #{crtime,jdbcType=TIMESTAMP}, 
+      #{mtime,jdbcType=TIMESTAMP}, #{mapLocation,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test.domain.ContactWay" >
+    insert into company_contactway_info_v
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyDomain != null" >
+        company_domain,
+      </if>
+      <if test="contactwayId != null" >
+        contactway_id,
+      </if>
+      <if test="contactor != null" >
+        contactor,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="postcode != null" >
+        postcode,
+      </if>
+      <if test="companyLink != null" >
+        company_link,
+      </if>
+      <if test="crtime != null" >
+        crtime,
+      </if>
+      <if test="mtime != null" >
+        mtime,
+      </if>
+      <if test="mapLocation != null" >
+        map_location,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyDomain != null" >
+        #{companyDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="contactwayId != null" >
+        #{contactwayId,jdbcType=INTEGER},
+      </if>
+      <if test="contactor != null" >
+        #{contactor,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyLink != null" >
+        #{companyLink,jdbcType=VARCHAR},
+      </if>
+      <if test="crtime != null" >
+        #{crtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mtime != null" >
+        #{mtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mapLocation != null" >
+        #{mapLocation,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
